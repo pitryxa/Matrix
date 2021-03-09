@@ -4,7 +4,7 @@ public class ScalarMultiplicationMatrix extends Matrix {
 
 
     public ScalarMultiplicationMatrix(Matrix extMatrix, double scalar) {
-        super(extMatrix);
+        super(extMatrix.rows, extMatrix.cols);
         this.matrix = scalarMultiplication(extMatrix.matrix, scalar);
     }
 
