@@ -1,19 +1,18 @@
-import matrix.AdditionMatrix;
-import matrix.Matrix;
-import matrix.RandomMatrix;
-import matrix.ScalarMultiplicationMatrix;
+import matrix.*;
+
+import java.util.Random;
 
 public class Main {
     public static void main(String[] args) {
-        Matrix aMatrix = new RandomMatrix(3, 4);
+        Matrix aMatrix = new RandomMatrix(2, 3, rnd -> rnd.nextInt(4));
 
-        Matrix bMatrix = new RandomMatrix(3, 4, -1, 1);
+        Matrix bMatrix = new RandomMatrix(3, 2, rnd -> rnd.nextInt(4));
 
-        Matrix addMatrix = new ScalarMultiplicationMatrix(aMatrix, 0);
+        Matrix multMatrix = new MultiplicationMatrix(aMatrix, bMatrix);
 
         System.out.println(aMatrix);
         System.out.println(bMatrix);
-        System.out.println(addMatrix);
+        System.out.println(multMatrix);
 
 
     }
