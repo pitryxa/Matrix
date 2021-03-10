@@ -1,5 +1,6 @@
 import matrix.*;
 
+import java.util.Arrays;
 import java.util.Random;
 
 public class Main {
@@ -13,6 +14,9 @@ public class Main {
         System.out.println(aMatrix);
         System.out.println(bMatrix);
         System.out.println(multMatrix);
+
+        Double[] asd = new Double[0];
+        System.out.println(asd[0]);
 
 
     }
