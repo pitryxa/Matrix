@@ -14,19 +14,19 @@ public class ValidateMatrix {
         this.cols = cols;
     }
 
-    public boolean isDimensionsValid(int row, int col) {
-        return isRowValid(row) && isColValid(col);
+    public boolean isIndexesValid(int row, int col) {
+        return isRowIndexValid(row) && isColIndexValid(col);
     }
 
     public boolean isValid(int dim) {
         return dim > 0;
     }
 
-    public boolean isRowValid(int index) {
+    public boolean isRowIndexValid(int index) {
         return index >= 0 && index < this.rows;
     }
 
-    public boolean isColValid(int index) {
+    public boolean isColIndexValid(int index) {
         return index >= 0 && index < this.cols;
     }
 

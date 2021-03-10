@@ -45,28 +45,28 @@ public class Matrix implements Cloneable {
     }
 
     public Double get(int row, int col) {
-        if (!validate.isDimensionsValid(row, col)) {
+        if (!validate.isIndexesValid(row, col)) {
             throw new IllegalArgumentException("The indexes out of range.");
         }
         return matrix[row][col];
     }
 
     public void put(int row, int col, Double data) {
-        if (!validate.isDimensionsValid(row, col)) {
+        if (!validate.isIndexesValid(row, col)) {
             throw new IllegalArgumentException("The indexes out of range.");
         }
         matrix[row][col] = data;
     }
 
     public Double[] getRow(int row) {
-        if (!validate.isRowValid(row)) {
+        if (!validate.isRowIndexValid(row)) {
             throw new IllegalArgumentException("The index of row out of range.");
         }
         return matrix[row];
     }
 
     public Double[] getCol(int col) {
-        if (!validate.isColValid(col)) {
+        if (!validate.isColIndexValid(col)) {
             throw new IllegalArgumentException("The index of col out of range.");
         }
         Double[] data = new Double[rows];

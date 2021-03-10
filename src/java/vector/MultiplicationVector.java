@@ -4,7 +4,7 @@ public class MultiplicationVector extends Vector{
 
     public MultiplicationVector(Vector aVector, Vector bVector) {
         super(1);
-        if (!validate(aVector, bVector)) {
+        if (!validate.isSameSize(aVector, bVector)) {
             throw new IllegalArgumentException("Both vectors must have the same size.");
         }
         this.vector = multiplication(aVector, bVector);
@@ -16,10 +16,6 @@ public class MultiplicationVector extends Vector{
             sum += aVector.vector[i] * bVector.vector[i];
         }
         return new Double[]{sum};
-    }
-
-    protected boolean validate(Vector aVector, Vector bVector) {
-        return aVector.size == bVector.size;
     }
 
     public Double get() {

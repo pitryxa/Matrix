@@ -5,20 +5,31 @@ import java.util.Objects;
 public class Vector implements Cloneable {
     protected final int size;
     protected Double[] vector;
+    protected final ValidateVector validate = new ValidateVector();
 
     public Vector(int size) {
+        if (!validate.isValid(size)) {
+            throw new IllegalArgumentException("The size must be greater than zero.");
+        }
         this.size = size;
         this.vector = new Double[size];
+        validate.setSize(size);
     }
 
     public Vector(Vector extVector) {
         this.size = extVector.size;
         this.vector = extVector.vector;
+        validate.setSize(size);
     }
 
     public Vector(Double[] extArray) {
-        this.size = extArray.length;
+        int size = extArray.length;
+        if (!validate.isValid(size)) {
+            throw new IllegalArgumentException("The size must be greater than zero.");
+        }
+        this.size = size;
         this.vector = extArray;
+        validate.setSize(size);
     }
 
     public Double[] toArray() {
@@ -26,10 +37,16 @@ public class Vector implements Cloneable {
     }
 
     public Double get(int index) {
+        if (!validate.isIndexValid(index)) {
+            throw new IllegalArgumentException("The index out of range.");
+        }
         return vector[index];
     }
 
     public void put(int index, Double data) {
+        if (!validate.isIndexValid(index)) {
+            throw new IllegalArgumentException("The index out of range.");
+        }
         vector[index] = data;
     }
 
