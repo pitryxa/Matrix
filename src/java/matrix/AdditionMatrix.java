@@ -4,7 +4,7 @@ public class AdditionMatrix extends Matrix {
 
     public AdditionMatrix(Matrix aMatrix, Matrix bMatrix) {
         super(aMatrix.rows, aMatrix.cols);
-        if (!validate(aMatrix, bMatrix)) {
+        if (!validate.isSameSize(aMatrix, bMatrix)) {
             throw new IllegalArgumentException("Both matrices must have the same number of rows and columns.");
         }
         this.matrix = addition(aMatrix, bMatrix);
@@ -18,9 +18,5 @@ public class AdditionMatrix extends Matrix {
             }
         }
         return data;
-    }
-
-    protected boolean validate(Matrix aMatrix, Matrix bMatrix) {
-        return aMatrix.rows == bMatrix.rows && aMatrix.cols == bMatrix.cols;
     }
 }

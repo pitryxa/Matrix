@@ -8,7 +8,7 @@ public class ScalarAdditionMatrix extends Matrix {
         this.matrix = addition(extMatrix.matrix, scalar);
     }
 
-    private Double[][] addition(Double[][] matrix, double scalar) {
+    protected Double[][] addition(Double[][] matrix, double scalar) {
         Double[][] data = new Double[rows][cols];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {

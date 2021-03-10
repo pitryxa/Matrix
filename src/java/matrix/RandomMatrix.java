@@ -10,9 +10,12 @@ public class RandomMatrix extends Matrix {
         this.matrix = random();
     }
 
-    public RandomMatrix(int rows, int cols, double origin, double bounds) {
+    public RandomMatrix(int rows, int cols, double start, double end) {
         super(rows, cols);
-        this.matrix = random(origin, bounds);
+        if (!validate.isValidRange(start, end)) {
+            throw new IllegalArgumentException("Invalid range: the start number must be less than the end number.");
+        }
+        this.matrix = random(start, end);
     }
 
     public RandomMatrix(int rows, int cols, Function<Random, Integer> creator) {
@@ -31,12 +34,12 @@ public class RandomMatrix extends Matrix {
         return data;
     }
 
-    protected Double[][] random(double origin, double bound) {
+    protected Double[][] random(double start, double end) {
         Random rnd = new Random();
         Double[][] data = new Double[rows][cols];
         for (int i = 0; i < rows; i++) {
             for (int j = 0; j < cols; j++) {
-                data[i][j] = rnd.nextDouble() * (bound - origin) + origin;
+                data[i][j] = rnd.nextDouble() * (end - start) + start;
             }
         }
         return data;

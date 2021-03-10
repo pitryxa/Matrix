@@ -6,23 +6,38 @@ public class Matrix implements Cloneable {
     protected final int rows;
     protected final int cols;
     protected Double[][] matrix;
+    protected final ValidateMatrix validate = new ValidateMatrix();
 
     public Matrix(int rows, int cols) {
+        if (!validate.isValid(rows) || !validate.isValid(cols)) {
+            throw new IllegalArgumentException("The number of rows and cols must be greater than zero.");
+        }
         this.rows = rows;
         this.cols = cols;
         this.matrix = new Double[rows][cols];
+        validate.setDimensions(rows, cols);
     }
 
     public Matrix(Double[][] extArray) {
+        int rows = extArray.length;
+        if (!validate.isValid(rows)) {
+            throw new IllegalArgumentException("The number of rows must be greater than zero.");
+        }
+        int cols = extArray[0].length;
+        if (!validate.isValid(cols)) {
+            throw new IllegalArgumentException("The number of cols must be greater than zero.");
+        }
         this.matrix = extArray;
-        this.rows = extArray.length;
-        this.cols = extArray[0].length;
+        this.rows = rows;
+        this.cols = cols;
+        validate.setDimensions(rows, cols);
     }
 
     public Matrix(Matrix extMatrix) {
         this.rows = extMatrix.rows;
         this.cols = extMatrix.cols;
         this.matrix = extMatrix.matrix;
+        validate.setDimensions(rows, cols);
     }
 
     public Double[][] toArray() {
@@ -30,18 +45,30 @@ public class Matrix implements Cloneable {
     }
 
     public Double get(int row, int col) {
+        if (!validate.isDimensionsValid(row, col)) {
+            throw new IllegalArgumentException("The indexes out of range.");
+        }
         return matrix[row][col];
     }
 
     public void put(int row, int col, Double data) {
+        if (!validate.isDimensionsValid(row, col)) {
+            throw new IllegalArgumentException("The indexes out of range.");
+        }
         matrix[row][col] = data;
     }
 
     public Double[] getRow(int row) {
+        if (!validate.isRowValid(row)) {
+            throw new IllegalArgumentException("The index of row out of range.");
+        }
         return matrix[row];
     }
 
     public Double[] getCol(int col) {
+        if (!validate.isColValid(col)) {
+            throw new IllegalArgumentException("The index of col out of range.");
+        }
         Double[] data = new Double[rows];
         for (int i = 0; i < rows; i++) {
             data[i] = matrix[i][col];
